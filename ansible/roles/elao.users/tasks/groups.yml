@@ -1,0 +1,7 @@
+---
+
+- name: groups > Groups configuration
+  group:
+    name:   "{{ item.name }}"
+    system: "{{ item.system|default(omit) }}"
+  with_items: elao_users_groups|default([])
