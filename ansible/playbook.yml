@@ -76,13 +76,13 @@
         path: "{{ elao_vim_bin }}"
 
   roles:
-    - { role: elao.apt }
-    - { role: elao.sudo }
-    - { role: elao.users }
-    - { role: elao.ssh }
-    - { role: elao.zsh }
-    - { role: elao.git }
-    - { role: elao.ohmyzsh }
-    - { role: elao.vim }
-    - { role: elao.alternatives }
-    - { role: elao.make }
+    - role: elao.apt
+    - role: elao.sudo
+    - role: elao.users
+    - role: elao.ssh
+    - role: elao.zsh
+    - role: elao.git
+    - role: elao.ohmyzsh
+    - role: elao.vim
+    - role: elao.alternatives
+    - role: elao.make
