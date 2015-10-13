@@ -23,7 +23,7 @@
             "ssh_password"         : "root",
             "ssh_wait_timeout"     : "30m",
             "shutdown_command"     : "/sbin/shutdown -h now",
-            "http_directory"       : "",
+            "http_directory"       : "http",
             "boot_command"         : [
                 "<esc><wait>",
                 "install <wait>",
