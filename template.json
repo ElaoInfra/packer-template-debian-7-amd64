@@ -1,13 +1,12 @@
 {
     "description": "Debian 7 - amd64",
     "variables": {
-        "name"           : "debian-7-amd64",
-        "version"        : "",
-        "packer_builder" : "",
-        "ansible_user"   : ""
+        "name"    : "debian-7-amd64",
+        "version" : ""
     },
     "builders": [
         {
+            "name"                 : "vagrant",
             "type"                 : "virtualbox-iso",
             "guest_os_type"        : "Debian_64",
             "format"               : "ovf",
@@ -48,6 +47,7 @@
             "vm_name": "{{user `name`}}"
         },
         {
+            "name"        : "docker",
             "type"        : "docker",
             "image"       : "debian:wheezy",
             "export_path" : "{{user `name`}}-{{user `version`}}-docker.tar"
@@ -76,13 +76,13 @@
                 "scripts/grub.sh",
                 "scripts/virtualbox.sh"
             ],
-            "only"    : ["virtualbox-iso"]
+            "only"    : ["vagrant"]
         },
         {
             "type"            : "ansible-local",
             "playbook_file"   : "ansible/playbook.yml",
             "playbook_dir"    : "ansible",
-            "extra_arguments" : ["-e '_user={{user `ansible_user`}} _packer_builder={{user `packer_builder`}}'"]
+            "extra_arguments" : ["-e '_user={{build_name}} _packer_builder={{build_name}}'"]
         },
         {
             "type"    : "shell",
@@ -95,7 +95,7 @@
             "scripts" : [
                 "scripts/clean-virtualbox.sh"
             ],
-            "only"    : ["virtualbox-iso"]
+            "only"    : ["vagrant"]
         }
     ],
     "post-processors": [
@@ -104,15 +104,15 @@
                 "type"              : "vagrant",
                 "output"            : "{{user `name`}}-{{user `version`}}-virtualbox.box",
                 "compression_level" : 9,
-                "only"              : ["virtualbox-iso"]
+                "only"              : ["vagrant"]
             },
             {
                 "type":          "atlas",
                 "artifact":      "elao/{{user `name`}}",
                 "artifact_type": "vagrant.box",
                 "metadata":      {"provider": "virtualbox"},
-                "only":          ["virtualbox-iso"]
-            }
+                "only":          ["vagrant"]
+             }
         ]
     ]
 }
