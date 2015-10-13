@@ -99,11 +99,13 @@
         }
     ],
     "post-processors": [
-        {
-            "type"              : "vagrant",
-            "output"            : "{{user `name`}}-{{user `version`}}-virtualbox.box",
-            "compression_level" : 9,
-            "only"              : ["virtualbox-iso"]
-        }
+        [
+            {
+                "type"              : "vagrant",
+                "output"            : "{{user `name`}}-{{user `version`}}-virtualbox.box",
+                "compression_level" : 9,
+                "only"              : ["virtualbox-iso"]
+            }
+        ]
     ]
 }
