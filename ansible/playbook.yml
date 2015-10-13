@@ -4,6 +4,11 @@
 
   vars:
 
+    # Set by packer
+    # =============
+    #_user:           vagrant|docker
+    #_packer_builder: vagrant|docker
+
     ############
     # Timezone #
     ############
