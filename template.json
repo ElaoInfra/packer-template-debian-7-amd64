@@ -2,7 +2,7 @@
     "description": "Debian 7 - amd64",
     "variables": {
         "name"    : "debian-7-amd64",
-        "version" : ""
+        "version": "1.0.4"
     },
     "builders": [
         {

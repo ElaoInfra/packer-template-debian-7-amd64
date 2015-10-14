@@ -7,10 +7,12 @@ COLOR_INFO    = \033[32m
 COLOR_COMMENT = \033[33m
 COLOR_ERROR   = \033[31m
 
+version=$(shell grep '"version"' template.json | sed 's/^.*"version"[ ]*:[ ]*"\([0-9].[0-9].[0-9]*\).*$$/\1/')
+
 ## Help
 help:
 	printf "${COLOR_COMMENT}Usage:${COLOR_RESET}\n"
-	printf " make [target] type=[type] version=[version]\n\n"
+	printf " make [target] type=[type]\n\n"
 	printf "${COLOR_COMMENT}Available targets:${COLOR_RESET}\n"
 	awk '/^[a-zA-Z\-\_0-9\.]+:/ { \
 		helpMessage = match(lastLine, /^## (.*)/); \
@@ -29,9 +31,9 @@ help:
 build: clean roles
 ifeq (${type}, docker)
 	mkdir -p ~/.packer.d/tmp
-	TMPDIR=~/.packer.d/tmp packer build -only=docker -var 'version=${version}' template.json
+	TMPDIR=~/.packer.d/tmp packer build -only=docker template.json
 else
-	packer build -only=vagrant -var 'version=${version}' template.json
+	packer build -only=vagrant template.json
 endif
 
 ## Clean
@@ -41,5 +43,5 @@ clean:
 
 ## Roles
 roles:
-	printf "${COLOR_INFO}Install ${COLOR_RESET}${template}${COLOR_INFO} ansible galaxy roles into ${COLOR_RESET}ansible/roles:\n"
+	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles:\n"
 	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
