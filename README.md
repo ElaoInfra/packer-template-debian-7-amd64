@@ -5,8 +5,8 @@
  * Debian 7.9 - amd64
    * Openssh-server
    * Nfs support (nfs-common, cachefilesd)
-   * VirtualBox - Guest Additions 5.0.4 (dkms, linux-headers)
-   * Ansible 1.9.2 (python-pycurl)
+   * VirtualBox - Guest Additions 5.0.6 (dkms, linux-headers)
+   * Ansible 1.9.3 (python-pycurl)
    * Vim 7.4 (backports)
    * Git 1.9.1 (backports)
    * Oh-my-zsh
