@@ -40,18 +40,24 @@
     # Users #
     #########
 
+    _users:
+      vagrant:
+        password: $6$rounds=100000$57FvLCbisIN73c9g$EpejM4trTzJ0Tz9W1NIWVjm3S9TeZ2LOZflyQzGAl7CJi518st0kqfWO24SEKMQSdTG5GIu9IgaGmiFfFzA/51
+        keys:
+          - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
+      docker:
+        password: $6$rounds=100000$k85Toreb5r46eSdi$rPC1sKCeMMcF5bSrvVhuklK9eUMYnEhtSQv2.xqqI9Yx67eILmmlQSU2HhzzNO8VDyLZM0OcTVZ7GmVVs0TpQ0
+        keys: []
+
     elao_users:
       - name:     "{{ _user }}"
-        password: "{{ _user }}"
-        # vagrant or docker password
-        password: "{{ '$6$rounds=100000$57FvLCbisIN73c9g$EpejM4trTzJ0Tz9W1NIWVjm3S9TeZ2LOZflyQzGAl7CJi518st0kqfWO24SEKMQSdTG5GIu9IgaGmiFfFzA/51' if _user == 'vagrant' else '$6$rounds=100000$k85Toreb5r46eSdi$rPC1sKCeMMcF5bSrvVhuklK9eUMYnEhtSQv2.xqqI9Yx67eILmmlQSU2HhzzNO8VDyLZM0OcTVZ7GmVVs0TpQ0' }}"
+        password: "{{ _users[_user]['password'] }}"
         group:    users
         groups:   ['sudo']
 
     elao_users_authorized_keys:
       - user: "{{ _user }}"
-        keys:
-          - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
+        keys: "{{ _users[_user]['keys'] }}"
 
     #######
     # Git #
