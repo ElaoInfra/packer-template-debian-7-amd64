@@ -1,43 +1,22 @@
-- src:     https://github.com/ElaoInfra/ansible-role-timezone
-  name:    elao.timezone
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-apt
-  name:    elao.apt
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-sudo
-  name:    elao.sudo
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-users
-  name:    elao.users
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-ssh
-  name:    elao.ssh
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-zsh
-  name:    elao.zsh
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-git
-  name:    elao.git
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-ohmyzsh
-  name:    elao.ohmyzsh
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-vim
-  name:    elao.vim
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-alternatives
-  name:    elao.alternatives
-  version: origin/1.0
-
-- src:     https://github.com/ElaoInfra/ansible-role-make
-  name:    elao.make
-  version: origin/1.0
+- src:     elao.timezone
+  version: 1.0
+- src:     elao.apt
+  version: 1.0
+- src:     elao.sudo
+  version: 1.0
+- src:     elao.users
+  version: 1.0
+- src:     elao.ssh
+  version: 1.0
+- src:     elao.zsh
+  version: 1.0
+- src:     elao.git
+  version: 1.0
+- src:     elao.ohmyzsh
+  version: 1.0
+- src:     elao.vim
+  version: 1.0
+- src:     elao.alternatives
+  version: 1.0
+- src:     elao.make
+  version: 1.0
