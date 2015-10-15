@@ -7,7 +7,9 @@ COLOR_INFO    = \033[32m
 COLOR_COMMENT = \033[33m
 COLOR_ERROR   = \033[31m
 
-version=$(shell grep '"version"' template.json | sed 's/^.*"version"[ ]*:[ ]*"\([0-9].[0-9].[0-9]*\).*$$/\1/')
+template      = debian-7-amd64
+version       = $(shell grep '"version"' template.json | sed 's/^.*"version"[ ]*:[ ]*"\([0-9].[0-9].[0-9]*\).*$$/\1/')
+version_minor = $(shell echo ${version} | sed 's/^\([0-9].[0-9]\).[0-9]*$$/\1/')
 
 ## Help
 help:
@@ -34,6 +36,29 @@ ifeq (${type}, docker)
 	TMPDIR=~/.packer.d/tmp packer build -only=docker template.json
 else
 	packer build -only=vagrant template.json
+endif
+
+## Test
+test:
+ifeq (${type}, docker)
+	docker run -d -p 0.0.0.0:2225:22 -t -i elao/${template} /bin/sh -c '/usr/sbin/sshd -D'
+else
+	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
+	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
+	-cd test/vagrant && vagrant destroy --force && vagrant up && vagrant ssh
+endif
+
+## Publish
+publish:
+ifeq (${type}, docker)
+	printf "${COLOR_INFO}Push docker image ${COLOR_RESET}\n"
+	cat ${template}-${version}-docker.tar | docker import - elao/${template}:${version}
+	docker push elao/${template}:${version}
+	docker tag -f elao/${template}:${version} elao/${template}:${version_minor}
+	docker push elao/${template}:${version_minor}
+else
+	printf "${COLOR_INFO}Upload vagrant box ${COLOR_RESET}\n"
+	scp ${template}-${version}-virtualbox.box boxes.elao.com:/var/www/boxes/vagrant
 endif
 
 ## Clean
