@@ -3,5 +3,5 @@
 /*.box
 /*.tar
 
-/test/vagrant/.vagrant/
-/test/vagrant/ansible.cfg
+/tests/vagrant/.vagrant/
+/tests/vagrant/ansible.cfg
