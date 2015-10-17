@@ -41,7 +41,8 @@ endif
 ## Test
 test:
 ifeq (${type}, docker)
-	docker run --rm --user docker --workdir /home/docker --tty -i elao/${template}:${version} /bin/zsh
+	cat ${template}-${version}-docker.tar | docker import - ${template}
+	docker run --rm --user docker --workdir /home/docker --tty -i ${template} /bin/zsh
 else
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
 	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
