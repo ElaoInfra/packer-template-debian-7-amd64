@@ -17,3 +17,13 @@
  * Vagrant integration (user & public ssh key)
  * Vim customization (default editor, syntax highlighting, ...)
  * Increase git performance over nfs with *core.preloadindex true*
+
+## Changelog ##
+
+### 1.0.4
+
+* No longer add vagrant public ssh key to docker build
+* Disable splash screen during preseed
+* Use google dns servers
+* Use httpredir debian mirror
+* Add contrib and non-free debian softwares
