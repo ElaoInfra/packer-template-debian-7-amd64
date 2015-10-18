@@ -1,5 +1,0 @@
----
-
-- name: upgrade > Upgrade dist
-  apt:
-    upgrade: dist
