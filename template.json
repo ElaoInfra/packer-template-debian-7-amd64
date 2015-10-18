@@ -105,14 +105,7 @@
                 "output"            : "{{user `name`}}-{{user `version`}}-virtualbox.box",
                 "compression_level" : 9,
                 "only"              : ["vagrant"]
-            },
-            {
-                "type":          "atlas",
-                "artifact":      "elao/{{user `name`}}",
-                "artifact_type": "vagrant.box",
-                "metadata":      {"provider": "virtualbox"},
-                "only":          ["vagrant"]
-             }
+            }
         ]
     ]
 }
