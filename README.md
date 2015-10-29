@@ -25,5 +25,4 @@
 * No longer add vagrant public ssh key to docker build
 * Disable splash screen during preseed
 * Use google dns servers
-* Use httpredir debian mirror
-* Add contrib and non-free debian softwares
+* Use debian httpredir as apt sources
