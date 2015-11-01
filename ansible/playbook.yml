@@ -25,6 +25,7 @@
 
     elao_apt_sources_list_template: sources_list/debian.list.j2
 
+    elao_apt_repositories_exclusive: true
     elao_apt_repositories:
       - debian_security
       - debian_updates
