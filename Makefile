@@ -30,7 +30,7 @@ help:
 	printf " ${COLOR_INFO}docker ${COLOR_RESET} Docker\n"
 
 ## Build
-build: clean roles
+build: clean update
 ifeq (${type}, docker)
 	mkdir -p ~/.packer.d/tmp
 	TMPDIR=~/.packer.d/tmp packer build -only=docker template.json
@@ -67,7 +67,10 @@ clean:
 	printf "${COLOR_INFO}Clean output files ${COLOR_RESET}\n"
 	rm -Rf output-*
 
-## Roles
-roles:
+## Update
+update: update-roles
+
+## Update roles
+update-roles:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles:\n"
 	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
