@@ -4,16 +4,34 @@
 
   vars:
 
+    _env: dev
+
     # Set by packer
     # =============
-    #_user:           vagrant|docker
-    #_packer_builder: vagrant|docker
+    #_version: x.x.x
+    #_user:    vagrant|docker
+
+    ########
+    # Motd #
+    ########
+
+    elao_motd: "Elao - Debian 7 - amd64 - {{ _version }}"
 
     ############
     # Timezone #
     ############
 
     elao_timezone: Etc/UTC
+
+    ###########
+    # Locales #
+    ###########
+
+    elao_locales:
+      - name:  en_US.UTF-8
+        state: absent
+
+    elao_locales_default: C.UTF-8
 
     #######
     # Apt #
@@ -35,6 +53,15 @@
       - vim@debian_backports
 
     elao_apt_packages: []
+
+    #######
+    # Ssh #
+    #######
+
+    elao_ssh_config_sshd_template: config/sshd/{{ _env }}.j2
+
+    elao_ssh_config_template: config/{{ _env }}.j2
+    elao_ssh_config: []
 
     ########
     # Sudo #
@@ -64,29 +91,27 @@
         password: "{{ _users[_user]['password'] }}"
         group:    users
         groups:   ['sudo']
-
-    elao_users_authorized_keys:
-      - user: "{{ _user }}"
-        keys: "{{ _users[_user]['keys'] }}"
+        authorized_keys: "{{ _users[_user]['keys'] }}"
 
     #######
     # Git #
     #######
 
-    elao_git_config_template: config/base.j2
+    elao_git_config_template: "config/{{ _env }}.j2"
 
     #############
     # Oh my zsh #
     #############
 
     elao_ohmyzsh_users:
-      - user: "{{ _user }}"
+      - user:     "{{ _user }}"
+        template: users/{{ _env }}.j2
 
     #######
     # Vim #
     #######
 
-    elao_vim_config_template: config/base.j2
+    elao_vim_config_template: "config/{{ _env }}.j2"
 
     ################
     # Alternatives #
@@ -97,13 +122,17 @@
         path: "{{ elao_vim_bin }}"
 
   roles:
+    - role: elao.motd
+    - role: elao.timezone
+    - role: elao.locales
     - role: elao.apt
+    - role: elao.ssh
     - role: elao.sudo
     - role: elao.users
-    - role: elao.ssh
     - role: elao.zsh
     - role: elao.git
     - role: elao.ohmyzsh
     - role: elao.vim
     - role: elao.alternatives
     - role: elao.make
+    - role: elao.acl

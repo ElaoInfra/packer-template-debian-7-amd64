@@ -46,7 +46,7 @@ ifeq (${type}, docker)
 else
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
 	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
-	-cd tests/vagrant && vagrant destroy --force && vagrant up && vagrant ssh
+	-cd tests/vagrant && vagrant destroy --force && vagrant up && vagrant ssh && vagrant destroy -f
 endif
 
 ## Publish
