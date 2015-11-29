@@ -10,6 +10,7 @@
     # =============
     #_version: x.x.x
     #_user:    vagrant|docker
+    #_type:    vagrant|docker
 
     ########
     # Motd #
