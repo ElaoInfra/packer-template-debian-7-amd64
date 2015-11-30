@@ -8,15 +8,16 @@
 
     # Set by packer
     # =============
-    #_version: x.x.x
-    #_user:    vagrant|docker
-    #_type:    vagrant|docker
+    #_description: Foo bar
+    #_version:     x.x.x
+    #_user:        vagrant|docker
+    #_type:        vagrant|docker
 
     ########
     # Motd #
     ########
 
-    elao_motd: "Elao - Debian 7 - amd64 - {{ _version }}"
+    elao_motd: "Elao - {{ _description }} - {{ _version }}"
 
     ############
     # Timezone #
