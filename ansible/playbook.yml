@@ -132,9 +132,12 @@
     - role: elao.sudo
     - role: elao.users
     - role: elao.zsh
+      when: "_type != 'docker'"
     - role: elao.git
     - role: elao.ohmyzsh
+      when: "_type != 'docker'"
     - role: elao.vim
+      when: "_type != 'docker'"
     - role: elao.alternatives
     - role: elao.make
     - role: elao.acl
