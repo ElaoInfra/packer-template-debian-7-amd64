@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
     config.vm.box = 'debian-7-amd64'
 
     # Hostname
-    config.vm.hostname = 'debian-8-amd64.test'
+    config.vm.hostname = 'debian-7-amd64.test'
 
     # Hosts
     if Vagrant.has_plugin?('landrush')
