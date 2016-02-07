@@ -49,6 +49,7 @@
     elao_apt_repositories:
       - debian_security
       - debian_updates
+      - elao
 
     elao_apt_preferences:
       - git@debian_backports

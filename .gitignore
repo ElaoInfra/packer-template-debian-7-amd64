@@ -6,4 +6,3 @@
 /ansible/roles/*.*/
 
 /tests/vagrant/.vagrant/
-/tests/vagrant/ansible.cfg
