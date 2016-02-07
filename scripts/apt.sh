@@ -18,6 +18,6 @@ cat <<EOF > /etc/apt/sources.list.d/debian_elao_com.list
 deb https://debian.elao.com wheezy main
 EOF
 
-apt-key adv --recv-keys --keyserver keys.gnupg.net 8C8D73A4
+apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu 8C8D73A4
 
 apt-get update
